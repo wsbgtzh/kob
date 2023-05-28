@@ -13,9 +13,9 @@ import java.util.Map;
 public class BotInfoController {
     @RequestMapping("getbotinfo/")
     public Map<String, String> getbotInfo() {
-        Map<String, String> map = new HashMap<>();
-        map.put("name", "tiger");
-        map.put("rating", "1500");
-        return map;
+        Map<String, String> bot1 = new HashMap<>();
+        bot1.put("name", "apple");
+        bot1.put("rating", "3000");
+        return bot1;
     }
 }
