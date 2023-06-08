@@ -2,18 +2,18 @@
 import ContentField from '../../../components/ContentField.vue';
 import { useUserStore } from '../../../stores/user';
 import { ref } from 'vue';
-import router from '@/router/index';
-const store = useUserStore();
+import router from '../../../router';
 let username = ref('');
 let password = ref('');
 let error_message = ref('');
+const store = useUserStore();
 
 const jwt_token = localStorage.getItem("jwt_token");
 if (jwt_token) {
     store.user.token = jwt_token;
     store.getinfo({
         success() {
-            router.push({ name: 'home' });
+            router.push({ name: "home" });
             store.user.pulling_info = false;
         },
         error() {
