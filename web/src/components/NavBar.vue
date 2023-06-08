@@ -48,7 +48,7 @@ const logout = () => {
                         </ul>
                     </li>
                 </ul>
-                <ul class="navbar-nav" v-else>
+                <ul class="navbar-nav" v-else-if="!store.user.pulling_info">
                     <li class="nav-item">
                         <router-link class="nav-link" :to="{ name: 'user_account_login' }" role="button">
                             登录

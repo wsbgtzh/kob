@@ -1,6 +1,6 @@
 <script setup>
 import ContentField from '../../../components/ContentField.vue';
-import { useUserStore } from '@/stores/user';
+import { useUserStore } from '../../../stores/user';
 import { ref } from 'vue';
 import router from '@/router/index';
 const store = useUserStore();
@@ -8,6 +8,21 @@ let username = ref('');
 let password = ref('');
 let error_message = ref('');
 
+const jwt_token = localStorage.getItem("jwt_token");
+if (jwt_token) {
+    store.user.token = jwt_token;
+    store.getinfo({
+        success() {
+            router.push({ name: 'home' });
+            store.user.pulling_info = false;
+        },
+        error() {
+            store.user.pulling_info = false;
+        }
+    })
+} else {
+    store.user.pulling_info = false;
+}
 const login = () => {
     error_message.value = '';
     store.login({
@@ -17,11 +32,7 @@ const login = () => {
             store.getinfo({
                 success(resp) {
                     router.push({ name: 'home' });
-                    console.log(store.user);
                 },
-                error(resp) {
-                    console.log(resp);
-                }
             })
         },
         error() {
@@ -32,7 +43,7 @@ const login = () => {
 </script>
 
 <template>
-    <ContentField>
+    <ContentField v-if="!store.user.pulling_info">
         <div class="row justify-content-md-center">
             <div class="col-3">
                 <form @submit.prevent="login">

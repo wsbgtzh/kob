@@ -9,6 +9,7 @@ export const useUserStore = defineStore('user', () => {
         photo: "",
         token: "",
         is_login: false,
+        pulling_info: true,
     })
 
     const login = data => {
@@ -21,6 +22,7 @@ export const useUserStore = defineStore('user', () => {
             },
             success(resp) {
                 if (resp.error_message === "success") {
+                    localStorage.setItem("jwt_token", resp.token);
                     user.value.token = resp.token;
                     data.success(resp);
                 } else {
@@ -58,6 +60,7 @@ export const useUserStore = defineStore('user', () => {
     }
 
     const logout = () => {
+        localStorage.removeItem("jwt_token");
         user.value.id = "";
         user.value.username = "";
         user.value.photo = "";
