@@ -42,7 +42,7 @@ public class AddServiceImpl implements AddService {
             return map;
         }
 
-        if (description == null && description.length() == 0) {
+        if (description == null || description.length() == 0) {
             description = "这个用户很懒，什么也没留下~";
         }
 
@@ -60,7 +60,6 @@ public class AddServiceImpl implements AddService {
             map.put("error_message", "代码长度不能超过10000");
             return map;
         }
-
         Date now = new Date();
         Bot bot = new Bot(null, user.getId(), title, description, content, 1500, now, now);
 
