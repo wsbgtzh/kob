@@ -6,7 +6,7 @@ let parent = ref(null)
 let canvas = ref(null)
 const store = usePkStore();
 onMounted(() => {
-    new GameMap(canvas.value.getContext('2d'), parent.value, store)
+    store.info.gameObject = new GameMap(canvas.value.getContext('2d'), parent.value, store);
 }) 
 </script>
 
