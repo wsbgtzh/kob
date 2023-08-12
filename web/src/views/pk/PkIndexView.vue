@@ -3,13 +3,16 @@ import Playground from '../../components/Playground.vue';
 import { onMounted, onUnmounted } from 'vue';
 import { usePkStore } from '../../stores/pk';
 import { useUserStore } from '../../stores/user';
+import { useRecordStore } from '../../stores/record';
 import Matchground from '../../components/Matchground.vue';
 import ResultBoard from '../../components/ResultBoard.vue';
 
 const store = useUserStore();
 const storepk = usePkStore();
+const storerecord = useRecordStore();
 const socketUrl = `ws://localhost:3000/websocket/${store.user.token}/`;
 storepk.info.loser = "none";
+storerecord.info.is_record = false;
 let socket = null;
 
 onMounted(() => {

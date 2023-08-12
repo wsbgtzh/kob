@@ -40,7 +40,12 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
             Claims claims = JwtUtil.parseJWT(token);
             userid = claims.getSubject();
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            try {
+                Claims refreshTokenClaims = JwtUtil.parseJWTRefresh(token);
+                userid = refreshTokenClaims.getSubject();
+            } catch (Exception ex) {
+                throw new RuntimeException("令牌无效或已过期");
+            }
         }
 
         User user = userMapper.selectById(Integer.parseInt(userid));

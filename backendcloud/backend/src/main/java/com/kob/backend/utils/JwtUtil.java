@@ -1,9 +1,6 @@
 package com.kob.backend.utils;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.JwtBuilder;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.*;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
@@ -59,4 +56,19 @@ public class JwtUtil {
                 .parseClaimsJws(jwt)
                 .getBody();
     }
+
+    public static Claims parseJWTRefresh(String refreshToken) throws Exception {
+        SecretKey refreshSecretKey = generalRefreshKey(); // 自行实现 generalRefreshKey 方法，用于获取刷新令牌密钥
+        return Jwts.parserBuilder()
+                .setSigningKey(refreshSecretKey)
+                .build()
+                .parseClaimsJws(refreshToken)
+                .getBody();
+    }
+
+    public static SecretKey generalRefreshKey() {
+        byte[] encodeRefreshKey = Base64.getDecoder().decode("c2FkaGZ1aWRmZ2hzZHVnaHNkdWdob2llcklTR1NHRklVV0hJMzI0MjM0Mg=="); // 替换为刷新令牌密钥的Base64编码
+        return new SecretKeySpec(encodeRefreshKey, 0, encodeRefreshKey.length, "HmacSHA256");
+    }
+
 }
