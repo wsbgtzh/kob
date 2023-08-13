@@ -10,7 +10,7 @@ import ResultBoard from '../../components/ResultBoard.vue';
 const store = useUserStore();
 const storepk = usePkStore();
 const storerecord = useRecordStore();
-const socketUrl = `ws://localhost:3000/websocket/${store.user.token}/`;
+const socketUrl = `wss://app5865.acapp.acwing.com.cn/websocket/${store.user.token}/`;
 storepk.info.loser = "none";
 storerecord.info.is_record = false;
 let socket = null;
@@ -75,11 +75,20 @@ onUnmounted(() => {
     <Playground v-if="storepk.info.status === 'playing'"></Playground>
     <Matchground v-if="storepk.info.status === 'matching'"></Matchground>
     <ResultBoard v-if="storepk.info.loser !== 'none'"></ResultBoard>
+    <div class="user-color" v-if="storepk.info.status === 'playing' && storepk.info.a_id == store.user.id">左下角</div>
+    <div class="user-color" v-if="storepk.info.status === 'playing' && storepk.info.b_id == store.user.id">右上角</div>
 </template>
 
 <style scoped> button {
      position: absolute;
      top: 10%;
      left: 25%;
+ }
+
+ .user-color {
+     text-align: center;
+     color: white;
+     font-size: 30px;
+     font-weight: 600;
  }
 </style>

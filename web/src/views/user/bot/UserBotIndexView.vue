@@ -28,7 +28,7 @@ const botadd = reactive({
 const refresh_bots = () => {
     $.ajax({
         type: "get",
-        url: "http://localhost:3000/user/bot/getlist/",
+        url: "https://app5865.acapp.acwing.com.cn/api/user/bot/getlist/",
         headers: {
             Authorization: "Bearer " + store.user.token
         },
@@ -43,7 +43,7 @@ const add_bot = () => {
     botadd.error_message = "";
     $.ajax({
         type: "post",
-        url: "http://localhost:3000/user/bot/add/",
+        url: "https://app5865.acapp.acwing.com.cn/api/user/bot/add/",
         data: {
             title: botadd.title,
             description: botadd.description,
@@ -69,7 +69,7 @@ const add_bot = () => {
 const remove_bot = bot => {
     $.ajax({
         type: "post",
-        url: "http://localhost:3000/user/bot/remove/",
+        url: "https://app5865.acapp.acwing.com.cn/api/user/bot/remove/",
         data: {
             bot_id: bot.id
         },
@@ -87,7 +87,7 @@ const remove_bot = bot => {
 const update_bot = bot => {
     $.ajax({
         type: "post",
-        url: "http://localhost:3000/user/bot/update/",
+        url: "https://app5865.acapp.acwing.com.cn/api/user/bot/update/",
         data: {
             bot_id: bot.id,
             title: bot.title,

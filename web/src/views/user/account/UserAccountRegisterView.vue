@@ -14,7 +14,7 @@ let error_message = ref('');
 const register = () => {
     $.ajax({
         type: "post",
-        url: "http://localhost:3000/user/account/register/",
+        url: "https://app5865.acapp.acwing.com.cn/api/user/account/register/",
         data: {
             username: username.value,
             password: password.value,

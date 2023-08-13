@@ -43,7 +43,7 @@ const pull_page = page => {
     current_page = page;
     $.ajax({
         type: "get",
-        url: "http://localhost:3000/record/getlist/",
+        url: "https://app5865.acapp.acwing.com.cn/api/record/getlist/",
         data: {
             page,
         },

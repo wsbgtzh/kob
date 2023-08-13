@@ -14,7 +14,7 @@ export const useUserStore = defineStore('user', () => {
 
     const login = data => {
         $.ajax({
-            url: 'http://localhost:3000/user/account/token/',
+            url: 'https://app5865.acapp.acwing.com.cn/api/user/account/token/',
             type: 'post',
             data: {
                 username: data.username,
@@ -37,7 +37,7 @@ export const useUserStore = defineStore('user', () => {
 
     const getinfo = data => {
         $.ajax({
-            url: 'http://localhost:3000/user/account/info/',
+            url: 'https://app5865.acapp.acwing.com.cn/api/user/account/info/',
             type: 'get',
             headers: {
                 Authorization: "Bearer " + user.value.token,

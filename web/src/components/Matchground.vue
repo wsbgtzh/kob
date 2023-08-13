@@ -30,7 +30,7 @@ const click_match_btn = () => {
 const refresh_bots = () => {
     $.ajax({
         type: "get",
-        url: "http://localhost:3000/user/bot/getlist/",
+        url: "https://app5865.acapp.acwing.com.cn/api/user/bot/getlist/",
         headers: {
             Authorization: "Bearer " + store.user.token
         },
